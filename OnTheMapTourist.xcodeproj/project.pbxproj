@@ -7,23 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		895FF7B1222F569100744274 /* FavPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895FF7B0222F569100744274 /* FavPhotoCell.swift */; };
+		895FF7B3222F57DE00744274 /* FavoritePhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895FF7B2222F57DE00744274 /* FavoritePhotosController.swift */; };
+		895FF7B5222F631C00744274 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895FF7B4222F631C00744274 /* DataController.swift */; };
 		89CDF8EA222B529600C6E311 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDF8E9222B529600C6E311 /* AppDelegate.swift */; };
-		89CDF8EC222B529600C6E311 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDF8EB222B529600C6E311 /* ViewController.swift */; };
-		89CDF8EF222B529600C6E311 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89CDF8ED222B529600C6E311 /* Main.storyboard */; };
 		89CDF8F2222B529600C6E311 /* OnTheMapTourist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 89CDF8F0222B529600C6E311 /* OnTheMapTourist.xcdatamodeld */; };
 		89CDF8F4222B529800C6E311 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89CDF8F3222B529800C6E311 /* Assets.xcassets */; };
-		89CDF8F7222B529800C6E311 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89CDF8F5222B529800C6E311 /* LaunchScreen.storyboard */; };
+		89CDF8FF222B530900C6E311 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDF8FE222B530900C6E311 /* MapViewController.swift */; };
+		89CDF901222B678000C6E311 /* PhotoAlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDF900222B678000C6E311 /* PhotoAlbumCollectionViewController.swift */; };
+		89CDF903222C3D3200C6E311 /* FlickrCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDF902222C3D3200C6E311 /* FlickrCell.swift */; };
+		89CDF905222C3FEB00C6E311 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDF904222C3FEB00C6E311 /* Photo.swift */; };
+		89CDF907222CA54E00C6E311 /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDF906222CA54E00C6E311 /* ColumnFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		895FF7B0222F569100744274 /* FavPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavPhotoCell.swift; sourceTree = "<group>"; };
+		895FF7B2222F57DE00744274 /* FavoritePhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosController.swift; sourceTree = "<group>"; };
+		895FF7B4222F631C00744274 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		895FF7B6222F657200744274 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		89CDF8E6222B529600C6E311 /* OnTheMapTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMapTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89CDF8E9222B529600C6E311 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		89CDF8EB222B529600C6E311 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		89CDF8EE222B529600C6E311 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89CDF8F1222B529600C6E311 /* OnTheMapTourist.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OnTheMapTourist.xcdatamodel; sourceTree = "<group>"; };
 		89CDF8F3222B529800C6E311 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		89CDF8F6222B529800C6E311 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89CDF8F8222B529800C6E311 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89CDF8FE222B530900C6E311 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		89CDF900222B678000C6E311 /* PhotoAlbumCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumCollectionViewController.swift; sourceTree = "<group>"; };
+		89CDF902222C3D3200C6E311 /* FlickrCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrCell.swift; sourceTree = "<group>"; };
+		89CDF904222C3FEB00C6E311 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		89CDF906222CA54E00C6E311 /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +51,7 @@
 		89CDF8DD222B529600C6E311 = {
 			isa = PBXGroup;
 			children = (
+				895FF7B6222F657200744274 /* README.md */,
 				89CDF8E8222B529600C6E311 /* OnTheMapTourist */,
 				89CDF8E7222B529600C6E311 /* Products */,
 			);
@@ -57,12 +69,17 @@
 			isa = PBXGroup;
 			children = (
 				89CDF8E9222B529600C6E311 /* AppDelegate.swift */,
-				89CDF8EB222B529600C6E311 /* ViewController.swift */,
-				89CDF8ED222B529600C6E311 /* Main.storyboard */,
 				89CDF8F3222B529800C6E311 /* Assets.xcassets */,
-				89CDF8F5222B529800C6E311 /* LaunchScreen.storyboard */,
 				89CDF8F8222B529800C6E311 /* Info.plist */,
 				89CDF8F0222B529600C6E311 /* OnTheMapTourist.xcdatamodeld */,
+				89CDF8FE222B530900C6E311 /* MapViewController.swift */,
+				89CDF900222B678000C6E311 /* PhotoAlbumCollectionViewController.swift */,
+				89CDF902222C3D3200C6E311 /* FlickrCell.swift */,
+				895FF7B0222F569100744274 /* FavPhotoCell.swift */,
+				89CDF904222C3FEB00C6E311 /* Photo.swift */,
+				89CDF906222CA54E00C6E311 /* ColumnFlowLayout.swift */,
+				895FF7B2222F57DE00744274 /* FavoritePhotosController.swift */,
+				895FF7B4222F631C00744274 /* DataController.swift */,
 			);
 			path = OnTheMapTourist;
 			sourceTree = "<group>";
@@ -125,9 +142,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89CDF8F7222B529800C6E311 /* LaunchScreen.storyboard in Resources */,
 				89CDF8F4222B529800C6E311 /* Assets.xcassets in Resources */,
-				89CDF8EF222B529600C6E311 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,32 +153,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89CDF8EC222B529600C6E311 /* ViewController.swift in Sources */,
+				89CDF905222C3FEB00C6E311 /* Photo.swift in Sources */,
+				89CDF903222C3D3200C6E311 /* FlickrCell.swift in Sources */,
+				89CDF901222B678000C6E311 /* PhotoAlbumCollectionViewController.swift in Sources */,
 				89CDF8EA222B529600C6E311 /* AppDelegate.swift in Sources */,
+				895FF7B1222F569100744274 /* FavPhotoCell.swift in Sources */,
+				895FF7B5222F631C00744274 /* DataController.swift in Sources */,
+				89CDF907222CA54E00C6E311 /* ColumnFlowLayout.swift in Sources */,
+				895FF7B3222F57DE00744274 /* FavoritePhotosController.swift in Sources */,
 				89CDF8F2222B529600C6E311 /* OnTheMapTourist.xcdatamodeld in Sources */,
+				89CDF8FF222B530900C6E311 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		89CDF8ED222B529600C6E311 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				89CDF8EE222B529600C6E311 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		89CDF8F5222B529800C6E311 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				89CDF8F6222B529800C6E311 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		89CDF8F9222B529800C6E311 /* Debug */ = {
