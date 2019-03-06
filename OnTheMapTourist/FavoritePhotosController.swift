@@ -17,6 +17,7 @@ class FavoritePhotosController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        setupNavigationBar()
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -27,6 +28,11 @@ class FavoritePhotosController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FavPhotoCell
         return cell
         
+    }
+    
+    func setupNavigationBar() {
+        navigationItem.title = "Favorites"
+        navigationItem.leftBarButtonItem?.title = "Photos"
     }
     
     fileprivate func setupCollectionView() {

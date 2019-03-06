@@ -68,8 +68,17 @@ class PhotoAlbumCollectionViewController: UICollectionViewController, UICollecti
     
     //MARK: UI COnfiguration
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(viewFavorites))
-        navigationItem.rightBarButtonItem?.image = UIImage(named: "deslikePhoto")
+        let favoritesButton: UIButton = {
+           let button = UIButton(type: .custom)
+            button.addTarget(self, action: #selector(viewFavorites), for: .touchUpInside)
+            let imageView = UIImage(named: "likePhoto")
+            button.setImage(imageView, for: .normal)
+            return button
+        }()
+        rightBarButtonItem = UIBarButtonItem(customView: favoritesButton)
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        navigationItem.title = "Photos"
+        navigationItem.leftBarButtonItem?.title = "Map"
     }
     
     @objc func viewFavorites() {
