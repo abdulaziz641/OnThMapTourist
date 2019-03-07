@@ -12,22 +12,19 @@ private let reuseIdentifier = "favPhotoCell"
 
 class FavoritePhotosController: UICollectionViewController {
     
+    //MARK: Properties
     private var likedPhotos: [Photo]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupLayout()
+    }
+    
+    //MARK: UI Configuration
+    fileprivate func setupLayout() {
         setupCollectionView()
         setupNavigationBar()
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return likedPhotos?.count ?? 0
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FavPhotoCell
-        return cell
-        
     }
     
     func setupNavigationBar() {
@@ -44,5 +41,16 @@ class FavoritePhotosController: UICollectionViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    //MARK: UICollectionViewDataSource
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return likedPhotos?.count ?? 0
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FavPhotoCell
+        return cell
+        
     }
 }

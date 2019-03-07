@@ -5,6 +5,7 @@
 The app allows will download and store images from **Flickr**.
 When you drop a pin on the map and click on it, it will take you to another view that has photos associated with this location.
 Also, you can like these photos.
+This project is the same project that was posted few days back, the difference is this one will never use xCode Storyboards 🤟.
 
 ## What you can do: 
 

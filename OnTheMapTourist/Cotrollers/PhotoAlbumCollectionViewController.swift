@@ -14,6 +14,7 @@ private let reuseIdentifier = "photoAlbCell"
 
 class PhotoAlbumCollectionViewController: UICollectionViewController {
     
+    //MARK: Properties
     var images: [String] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -47,13 +48,6 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
         fetchImages()
     }
     
-    //MARK: target functions
-    @objc func viewFavorites() {
-        let layout = ColumnFlowLayout()
-        let favoritePhotosVC = FavoritePhotosController(collectionViewLayout: layout)
-        navigationController!.pushViewController(favoritePhotosVC, animated: true)
-    }
-    
     //MARK: UI Configuration
     fileprivate func setupLayout() {
         setupInternetIndicator()
@@ -61,7 +55,7 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
         setupNavigationBar()
     }
     
-    private func setupNavigationBar() {
+    fileprivate func setupNavigationBar() {
         let favoritesButton: UIButton = {
             let button = UIButton(type: .custom)
             button.addTarget(self, action: #selector(viewFavorites), for: .touchUpInside)
@@ -99,7 +93,7 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
-        collectionView.delegate = self        
+        collectionView.delegate = self
     }
     
     fileprivate func configurUI(for code: UICode) {
@@ -116,6 +110,13 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
                 self.fetchingImagesLabel.isHidden = false
             }
         }
+    }
+    
+    //MARK: target functions
+    @objc func viewFavorites() {
+        let layout = ColumnFlowLayout()
+        let favoritePhotosVC = FavoritePhotosController(collectionViewLayout: layout)
+        navigationController!.pushViewController(favoritePhotosVC, animated: true)
     }
     
     //MARK: Image Fetching
@@ -153,13 +154,9 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
     
     // MARK: UICollectionViewDataSource
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
+    override func numberOfSections(in collectionView: UICollectionView) -> Int { return 1 }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
-    }
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return images.count }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FlickrCell

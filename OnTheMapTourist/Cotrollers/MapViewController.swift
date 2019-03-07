@@ -11,6 +11,7 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
+    //MARK: properties
     private var rightBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(handlePinEditing))
         return barButtonItem
@@ -36,24 +37,72 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupLayout()
+    }
+    
+    //MARK: UI Configuration
+    fileprivate func setupLayout() {
         setupMapView()
         setupNavigationBar()
+        setupMapView()
+        setupEditButton()
     }
     
     fileprivate func setupMapView() {
         mainMapView.delegate = self
         mainMapView.isUserInteractionEnabled = true
         configureGesureRecognizer()
+        view.addSubview(mainMapView)
+        
+        NSLayoutConstraint.activate([
+            mainMapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mainMapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            mainMapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            mainMapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            ])
     }
     
+    fileprivate func setupEditButton() {
+        view.addSubview(editPinsButton)
+        NSLayoutConstraint.activate([
+            
+            editPinsButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            editPinsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -44),
+            ])
+    }
+    
+    //MARK: UI Configuration
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        navigationItem.title = "On the Map Tourist"
+    }
+    
+    fileprivate func configureGesureRecognizer() {
+        let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(HandleLongTap))
+        longTapGesture.minimumPressDuration = 0.9
+        mainMapView.addGestureRecognizer(longTapGesture)
+    }
+    
+    //MARK: Target functions
     @objc private func handlePinEditing() {
         let layout = ColumnFlowLayout()
         let favoritePhotosVC = FavoritePhotosController(collectionViewLayout: layout)
         navigationController?.pushViewController(favoritePhotosVC, animated: true)
     }
     
+    @objc private func HandleLongTap(sender: UIGestureRecognizer){
+        if sender.state == .began {
+            let locationInView = sender.location(in: mainMapView)
+            let locationOnMap = mainMapView.convert(locationInView, toCoordinateFrom: mainMapView)
+            let pinLocation = CLLocationCoordinate2D(latitude: locationOnMap.latitude, longitude: locationOnMap.longitude)
+            let pinToAdd = MKPointAnnotation()
+            pinToAdd.coordinate = pinLocation
+            mainMapView.addAnnotation(pinToAdd)
+        }
+    }
+    
+    //MARK: MapView delegate implementation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-
+        
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         
@@ -74,43 +123,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         photosVc.pinCoordinates = view.annotation?.coordinate
         navigationController?.pushViewController(photosVc, animated: true)
         mainMapView.deselectAnnotation(view.annotation, animated: true)
-    }
-    
-    //MARK: UI Configuration
-    private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = rightBarButtonItem
-        navigationItem.title = "On the Map Tourist"
-    }
-    
-    private func setupLayout() {
-        view.addSubview(mainMapView)
-        view.addSubview(editPinsButton)
-        NSLayoutConstraint.activate([
-            mainMapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            mainMapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            mainMapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            mainMapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
-            editPinsButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            editPinsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -44),
-            
-            ])
-    }
-    
-    fileprivate func configureGesureRecognizer() {
-        let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(HandleLongTap))
-        longTapGesture.minimumPressDuration = 0.9
-        mainMapView.addGestureRecognizer(longTapGesture)
-    }
-    
-    @objc private func HandleLongTap(sender: UIGestureRecognizer){
-        if sender.state == .began {
-            let locationInView = sender.location(in: mainMapView)
-            let locationOnMap = mainMapView.convert(locationInView, toCoordinateFrom: mainMapView)
-            let pinLocation = CLLocationCoordinate2D(latitude: locationOnMap.latitude, longitude: locationOnMap.longitude)
-            let pinToAdd = MKPointAnnotation()
-            pinToAdd.coordinate = pinLocation
-            mainMapView.addAnnotation(pinToAdd)
-        }
     }
 }
