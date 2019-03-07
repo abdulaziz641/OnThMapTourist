@@ -23,7 +23,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return mapView
     }()
     
-    let editPinsButton: UIButton = {
+    let viewLikedPhotosButton: UIButton = {
         let button = UIButton(type: .custom)
         let buttonImage = UIImage(named: "likePhoto")
         button.contentMode = .scaleToFill
@@ -44,7 +44,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         setupMapView()
         setupNavigationBar()
         setupMapView()
-        setupEditButton()
+        setupLikeButton()
     }
     
     fileprivate func setupMapView() {
@@ -57,20 +57,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             mainMapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainMapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mainMapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            mainMapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            mainMapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             ])
     }
     
-    fileprivate func setupEditButton() {
-        view.addSubview(editPinsButton)
+    fileprivate func setupLikeButton() {
+        view.addSubview(viewLikedPhotosButton)
         NSLayoutConstraint.activate([
             
-            editPinsButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            editPinsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -44),
+            viewLikedPhotosButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32),
+            viewLikedPhotosButton.topAnchor.constraint(equalTo: mainMapView.bottomAnchor, constant: -74),
             ])
     }
     
-    //MARK: UI Configuration
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = rightBarButtonItem
         navigationItem.title = "On the Map Tourist"

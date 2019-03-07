@@ -60,4 +60,11 @@ class FlickrCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: like / dislike photo
+    func shouldLikePhoto(_ like: Bool, photo: Photo) {
+        let image = like ? UIImage(named: "deslikePhoto") : UIImage(named: "deslikePhoto")
+        likeButton.setImage(image, for: .normal)
+        //like ? delegate.likePhoto(photo: photo) : delegate.deslikePhoto(photo: photo)
+    }
 }

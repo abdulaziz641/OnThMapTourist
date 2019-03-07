@@ -9,4 +9,5 @@
 enum UICode: String {
     case loaded
     case emptyImagesInLocation
+    case userCanceled
 }

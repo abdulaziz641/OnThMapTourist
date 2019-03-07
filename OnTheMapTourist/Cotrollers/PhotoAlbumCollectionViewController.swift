@@ -109,6 +109,12 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
                 self.fetchingImagesLabel.text = "No images Found, try another location."
                 self.fetchingImagesLabel.isHidden = false
             }
+        case .userCanceled:
+            DispatchQueue.main.async {
+                self.internetIndicator.stopAnimating()
+                self.internetIndicator.isHidden = true
+                self.fetchingImagesLabel.isHidden = true
+            }
         }
     }
     
@@ -121,7 +127,7 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
     
     //MARK: Image Fetching
     fileprivate func fetchImages() {
-        NetworkClient.searchForImageFromFlickr(nil, lat: pinCoordinates.latitude, long: pinCoordinates.longitude) { (isSucceeded, _, _, listOfPhotosUrls) in
+        NetworkClient.searchForImageFromFlickr(nil, lat: pinCoordinates.latitude, long: pinCoordinates.longitude) { (isSucceeded, failureMessage, _, listOfPhotosUrls) in
             if isSucceeded {
                 self.configurUI(for: .loaded)
                 
@@ -130,25 +136,36 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
                 } else {
                     self.images = listOfPhotosUrls!
                 }
-//                for url in listOfPhotosUrls ?? [] {
-//                    self.createNewPhoto(for: self.loadedPinFromStore, and: url)
-//                }
-            } else {
+                // for url in listOfPhotosUrls ?? [] {
+                // self.createNewPhoto(for: self.loadedPinFromStore, and: url)
+                // }
                 DispatchQueue.main.async {
-                    let alertController: UIAlertController = {
-                       let alert = UIAlertController(title: "Network Error", message: "Check your internet connection.", preferredStyle: .alert)
-                        let tryAgainAction = UIAlertAction(title: "Try Again", style: UIAlertAction.Style.default, handler: { (action) in
-                            self.fetchImages()
-                        })
-                        alert.addAction(tryAgainAction)
-                        return alert
-                    }()
+                    self.collectionView.reloadData()
+                }
+            } else {
+                let tryAgainAction = UIAlertAction(title: "Try Again", style: UIAlertAction.Style.default, handler: { (action) in
+                    self.fetchImages()
+                })
+                let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (_) in
+                    self.configurUI(for: .userCanceled)
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+                let alertController: UIAlertController = {
+                    let alert = UIAlertController(title: "Network Error", message: "Check your internet connection.", preferredStyle: .alert)
+                    return alert
+                }()
+                if failureMessage == nil {
+                    alertController.addAction(tryAgainAction)
+                    alertController.addAction(okAction)
+                } else {
+                    alertController.title = "Request Error"
+                    alertController.message = failureMessage
+                    alertController.addAction(tryAgainAction)
+                }
+                DispatchQueue.main.async {
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
-        }
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
         }
     }
     

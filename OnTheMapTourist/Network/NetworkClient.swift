@@ -78,12 +78,13 @@ class NetworkClient {
             
             /*GUARD: Did e receive Data? */
             guard let data = data else {
-                fatalError("No data received from Server!, kindly try again")
+                completion(false, "No data received from Server!, kindly try again", nil, nil)
+                return
             }
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                completion(false, "The repsonse is not between 200 and 299!", nil, nil)
+                completion(false, "The remote server responded with error.", nil, nil)
                 return
             }
             
@@ -91,7 +92,7 @@ class NetworkClient {
             
             /* GUARD: Did Flickr return an error (stat != ok)? */
             guard (responseFromFlickr.stat == Constants.FlickrResponseValues.OKStatus) else {
-                completion(false, "There was failure processing your request!", nil, nil)
+                completion(false, "There was failure processing your request! Please try again.", nil, nil)
                 return
             }
             
