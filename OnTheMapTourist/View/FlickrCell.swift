@@ -19,7 +19,7 @@ class FlickrCell: UICollectionViewCell {
         }
     }
     
-    private var imageView: UIImageView = {
+    var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView

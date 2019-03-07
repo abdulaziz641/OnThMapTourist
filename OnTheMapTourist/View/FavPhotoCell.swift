@@ -10,9 +10,12 @@ import UIKit
 
 class FavPhotoCell: UICollectionViewCell {
     
-    var photo: [Photo]? {
+    var photo: Photo? {
         didSet {
-            
+            guard let photo = photo else {
+                return
+            }
+            imageView.image = UIImage(data: photo.data!)
         }
     }
     
@@ -24,7 +27,6 @@ class FavPhotoCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red
         setupLayout()
     }
     

@@ -1,0 +1,6 @@
+framework module Pods_OnTheMapTourist {
+  umbrella header "Pods-OnTheMapTourist-umbrella.h"
+
+  export *
+  module * { export * }
+}
