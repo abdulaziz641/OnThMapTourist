@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 import Kingfisher
 
 private let reuseIdentifier = "photoAlbCell"
@@ -41,9 +42,13 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
         return label
     }()
     
+    var dataController: DataController!
+    var fetchedResultsController: NSFetchedResultsController<Photo>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //setupFetchedResultsController()
         setupLayout()
         fetchImages()
     }
@@ -122,10 +127,20 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
     @objc func viewFavorites() {
         let layout = ColumnFlowLayout()
         let favoritePhotosVC = FavoritePhotosController(collectionViewLayout: layout)
+        favoritePhotosVC.dataController = dataController
         navigationController!.pushViewController(favoritePhotosVC, animated: true)
     }
     
     //MARK: Image Fetching
+    
+    fileprivate func shouldFetchImages() {
+        if fetchedResultsController.fetchedObjects?.count == 0 {
+            fetchImages()
+        } else {
+            
+        }
+    }
+    
     fileprivate func fetchImages() {
         NetworkClient.searchForImageFromFlickr(nil, lat: pinCoordinates.latitude, long: pinCoordinates.longitude) { (isSucceeded, failureMessage, _, listOfPhotosUrls) in
             if isSucceeded {
@@ -169,6 +184,28 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
         }
     }
     
+    //MARK: fetch request
+    func setupFetchedResultsController() {
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "photoURL", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "pin == %@", "loadedPinFromStore")
+        fetchRequest.predicate = predicate
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                              managedObjectContext: dataController.viewContext,
+                                                              sectionNameKeyPath: nil,
+                                                              cacheName: "photos")
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            showAlert(title: "Failure", message: "The fetch could not be performed", buttonText: "OK")
+        }
+    }
+    
     // MARK: UICollectionViewDataSource
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int { return 1 }
@@ -184,4 +221,8 @@ class PhotoAlbumCollectionViewController: UICollectionViewController {
         cell.imageView.kf.setImage(with: url)
         return cell
     }
+}
+
+extension PhotoAlbumCollectionViewController: NSFetchedResultsControllerDelegate {
+    
 }

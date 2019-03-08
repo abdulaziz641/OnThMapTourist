@@ -10,7 +10,7 @@ import UIKit
 
 class FavPhotoCell: UICollectionViewCell {
     
-    var photo: Photo? {
+    var photo: Image? {
         didSet {
             guard let photo = photo else {
                 return

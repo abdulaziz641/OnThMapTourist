@@ -11,6 +11,6 @@ import Foundation
 
 protocol PhotoAlbumViewControllerDelegate: class {
     
-    func likePhoto(photo: Photo)
-    func deslikePhoto(photo: Photo)
+    func likePhoto(photo: Image)
+    func deslikePhoto(photo: Image)
 }

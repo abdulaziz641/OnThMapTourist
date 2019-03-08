@@ -10,7 +10,7 @@ import UIKit
 
 class FlickrCell: UICollectionViewCell {
     
-    var photo: Photo? {
+    var photo: Image? {
         didSet {
             guard let image = UIImage(named: (photo?.name)!) else {
                 return
@@ -62,7 +62,7 @@ class FlickrCell: UICollectionViewCell {
     }
     
     //MARK: like / dislike photo
-    func shouldLikePhoto(_ like: Bool, photo: Photo) {
+    func shouldLikePhoto(_ like: Bool, photo: Image) {
         let image = like ? UIImage(named: "deslikePhoto") : UIImage(named: "deslikePhoto")
         likeButton.setImage(image, for: .normal)
         //like ? delegate.likePhoto(photo: photo) : delegate.deslikePhoto(photo: photo)

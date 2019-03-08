@@ -17,11 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
+        dataController.load()
         let mainVc = MapViewController()
         let navigationController = UINavigationController(rootViewController: mainVc)
+        navigationController.navigationBar.isTranslucent = false
+        mainVc.dataController = dataController
 //        let mainVc = PhotoAlbumCollectionViewController(collectionViewLayout: ColumnFlowLayout())
 //        let navigationController = UINavigationController(rootViewController: mainVc)
-        navigationController.navigationBar.isTranslucent = false
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
@@ -29,9 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func applicationDidEnterBackground(_ application: UIApplication) { }//self.saveContext() }
+    func applicationDidEnterBackground(_ application: UIApplication) { self.saveContext() }
     
-    func applicationWillTerminate(_ application: UIApplication) { }//self.saveContext() }
+    func applicationWillTerminate(_ application: UIApplication) { self.saveContext() }
     
     // MARK: - Core Data Saving support
     func saveContext() {

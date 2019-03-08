@@ -1,5 +1,5 @@
 //
-//  Photo.swift
+//  Image.swift
 //  OnTheMapTourist
 //
 //  Created by Abdulaziz Alsaloum on 03/03/2019.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Photo {
+struct Image {
     let name: String
     let data: Data?
     let height: CGFloat?
